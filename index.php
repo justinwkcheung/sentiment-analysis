@@ -5,24 +5,46 @@
 </form>
 
 <?php
-$curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=https://twitter.com/realDonaldTrump/status/797034721075228672&token=50e13e6b06bb4b0c9a233b11acb5687e",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "GET",
-  CURLOPT_HTTPHEADER => array(
-    "cache-control: no-cache"
-  ),
-));
+include('config.php');
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
+$connection = mysqli_connect($host,$username,$password,$dbname);
+if($connection === false) {
+    die("Connection failed");
+}
+else {
+  echo "success";
+  $sql = "SELECT id, Tweet_Url FROM tweets WHERE tweet_analyzed = 0";
+  $result = mysqli_query($connection, $sql);
+  // var_dump($data);
+  foreach($result as $row)
+  {
+    var_dump($row);
+  }
+}
 
-curl_close($curl);
-var_dump($response);
+
+?>
+
+<?php
+// $curl = curl_init();
+//
+// curl_setopt_array($curl, array(
+//   CURLOPT_URL => "https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=https://twitter.com/realDonaldTrump/status/797034721075228672&token=50e13e6b06bb4b0c9a233b11acb5687e",
+//   CURLOPT_RETURNTRANSFER => true,
+//   CURLOPT_TIMEOUT => 30,
+//   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//   CURLOPT_CUSTOMREQUEST => "GET",
+//   CURLOPT_HTTPHEADER => array(
+//     "cache-control: no-cache"
+//   ),
+// ));
+//
+// $response = curl_exec($curl);
+// $err = curl_error($curl);
+//
+// curl_close($curl);
+// var_dump($response);
 
 ?>
 
