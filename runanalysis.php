@@ -15,7 +15,7 @@ if($connection === false) {
     die("Connection failed");
 }
 else {
-  $sql = "SELECT Id, Tweet_Url, Tweet_Text FROM tweets WHERE tweet_analyzed = 0 LIMIT 20";
+  $sql = "SELECT Id, Tweet_Url, Tweet_Text FROM tweets WHERE tweet_analyzed = 0 LIMIT 250";
   $result = mysqli_query($connection, $sql);
 
   $curl = curl_init();
@@ -41,7 +41,7 @@ else {
 
     $response = json_decode($response, true);
     var_dump($response);
-    echo "<br>";
+    echo "<br><br>";
     $id = $row['Id'];
     $language = $response['lang'];
     $sentiment_type = $response['sentiment']['type'];

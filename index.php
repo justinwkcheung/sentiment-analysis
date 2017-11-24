@@ -17,13 +17,13 @@
   </head>
   <body>
 
-    <h2>Upload CSV here</h2>
+    <h2>Upload new CSV here</h2>
     <form class="post" action="upload.php" method="post" enctype="multipart/form-data">
       <input type="file" name="csv" value=""><br>
       <input type="submit" name="Upload" value="Upload">
     </form><br><br>
 
-    <a href="runanalysis.php">Run Daily Tweet Analysis Here</a><br>
+    <a href="runanalysis.php">Run Tweet Sentiment Analysis Here</a><br>
 
     <?php $tweet_header = "<a href='/index.php?filter=asc-tweet-text'>Sort by tweets asc</a>"; ?>
     <?php $language_header = "<a href='/index.php?filter=asc-language'>Sort by lang asc</a>"; ?>
