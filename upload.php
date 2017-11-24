@@ -36,7 +36,12 @@ if($myFile['error'] > 0){
 // var_dump($_FILES['csv']);
 // var_dump($csvAsArray);
 
-include('congif.php');
+$dburl = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$host = $dburl["host"];
+$username = $dburl["user"];
+$password = $dburl["pass"];
+$dbname = substr($dburl["path"], 1);
 
 //Now I will establish a connection to the DB and save the csv info to the DB
 $connection = mysqli_connect($host,$username,$password,$dbname);

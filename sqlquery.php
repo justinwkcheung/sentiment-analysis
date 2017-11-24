@@ -3,7 +3,12 @@
 // ini_set('display_errors', 1);
 
 // Try and connect to the database
-include('config.php');
+$dburl = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$host = $dburl["host"];
+$username = $dburl["user"];
+$password = $dburl["pass"];
+$dbname = substr($dburl["path"], 1);
 $connection = mysqli_connect($host,$username,$password,$dbname);
 // var_dump($connection);
 // If connection was not successful, handle the error

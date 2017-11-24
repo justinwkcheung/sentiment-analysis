@@ -1,7 +1,12 @@
 <h1>Sentiment Analysis Runs Here</h1><br>
 <?php
 
-include('config.php');
+$dburl = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$host = $dburl["host"];
+$username = $dburl["user"];
+$password = $dburl["pass"];
+$dbname = substr($dburl["path"], 1);
 
 $connection = mysqli_connect($host,$username,$password,$dbname);
 
@@ -9,7 +14,7 @@ if($connection === false) {
     die("Connection failed");
 }
 else {
-  $sql = "SELECT Id, Tweet_Url, Tweet_Text FROM tweets WHERE tweet_analyzed = 0 LIMIT 2";
+  $sql = "SELECT Id, Tweet_Url, Tweet_Text FROM tweets WHERE tweet_analyzed = 0 LIMIT 4";
   $result = mysqli_query($connection, $sql);
 
   $curl = curl_init();
