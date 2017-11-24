@@ -7,6 +7,7 @@ $host = $dburl["host"];
 $username = $dburl["user"];
 $password = $dburl["pass"];
 $dbname = substr($dburl["path"], 1);
+$dandelion_token = getenv('DANDELION_TOKEN');
 
 $connection = mysqli_connect($host,$username,$password,$dbname);
 
