@@ -56,7 +56,12 @@
 
     <?php
 
-    include('config.php');
+    $dburl = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+    $host = $dburl["host"];
+    $username = $dburl["user"];
+    $password = $dburl["pass"];
+    $dbname = substr($dburl["path"], 1);
 
     $connection = mysqli_connect($host,$username,$password,$dbname);
     if($connection === false) {
