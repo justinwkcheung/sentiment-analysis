@@ -15,7 +15,7 @@ if($connection === false) {
     die("Connection failed");
 }
 else {
-  $sql = "SELECT Id, Tweet_Url, Tweet_Text FROM tweets WHERE tweet_analyzed = 0 LIMIT 250";
+  $sql = "SELECT Id, Tweet_Url, Tweet_Text FROM tweets WHERE tweet_analyzed = 0 LIMIT 100";
   $result = mysqli_query($connection, $sql);
 
   $curl = curl_init();
