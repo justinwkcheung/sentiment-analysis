@@ -4,7 +4,6 @@ ini_set("auto_detect_line_endings", true);
 
 $tmpName = $_FILES['csv']['tmp_name'];
 $csvAsArray = array_map('str_getcsv', file($tmpName));
-// array_map('str_getcsv', file('data.csv' , FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
 
 //First I want to grab the values from the first row to be the keys of the next rows
 $keys = [];
@@ -37,15 +36,12 @@ if($myFile['error'] > 0){
 // var_dump($_FILES['csv']);
 // var_dump($csvAsArray);
 
-$host = 'localhost';
-$username = 'root';
-$password = 'root';
-$dbname = 'crowdbabble_test';
+include('congif.php');
 
+//Now I will establish a connection to the DB and save the csv info to the DB
 $connection = mysqli_connect($host,$username,$password,$dbname);
 
 if($connection === false) {
-    // Handle error - notify administrator, log to a file, show an error screen, etc.
     die("Connection failed");
 }
 else {
@@ -71,40 +67,6 @@ else {
   }
 }
 
-// foreach($result as $row)
-// {
-//   var_dump($row);
-// }
-
-// $curl = curl_init();
-// $firstKey = true;
-
-// foreach($csvAsArray as $arrayKey=>$arrayRow) {
-  // if ($firstKey) {
-  //   $firstKey = false;
-  //   continue;
-  // }
-  // $tweet_url = $arrayRow['Tweet_Url'];
-//   $url = "https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=".$csvAsArray[2]['Tweet_Url']."&token=50e13e6b06bb4b0c9a233b11acb5687e";
-//   var_dump($url);
-//   curl_setopt_array($curl, array(
-//     CURLOPT_URL => "https://api.dandelion.eu/datatxt/sent/v1/?lang=en&url=".$csvAsArray[2]['Tweet_Url']."&token=50e13e6b06bb4b0c9a233b11acb5687e",
-//     CURLOPT_RETURNTRANSFER => true,
-//     CURLOPT_TIMEOUT => 30,
-//     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//     CURLOPT_CUSTOMREQUEST => "GET",
-//     CURLOPT_HTTPHEADER => array(
-//       "cache-control: no-cache"
-//     ),
-//   ));
-//
-//   $response = curl_exec($curl);
-//   $err = curl_error($curl);
-//
-//   var_dump($response);
-// }
-//
-// curl_close($curl);
-
-
 ?>
+
+<a href="/index.php">Back to Main Page</a>
